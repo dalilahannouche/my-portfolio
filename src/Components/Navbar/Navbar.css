@@ -1,0 +1,184 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 90px;
+}
+
+.nav-menu li{
+  color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    display: inline-block;
+    transition: all 0.4s;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2));
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    cursor: pointer;
+}
+
+.nav-menu li:hover{
+  background-position: 0 0;
+}
+
+.right-side{
+    display: flex;
+    justify-self: unset;
+    gap: 20px;
+}
+img[alt="logo"]{
+    width: 200px;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+img[alt="sound"]{
+    width: 28px;
+    max-width: 100%;
+}
+
+.nav-music{
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.nav-menu{
+    list-style: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    font-size: 20px;
+}
+
+
+.Button {
+  background: none;
+  padding: 0;
+  margin: 0px auto;
+  border: none;
+  display: block;
+  backface-visibility: hidden;
+  width: 150px;
+  height: 50px;
+  position: relative;
+  color: #98A5A6;
+  font-size: 15px;
+  transition: transform 300ms, color 300ms;
+  cursor: pointer;
+}
+
+.Button:hover,
+.Button:focus {
+  color: #BEC3C7;
+  transform: scale(1.05);
+}
+
+.Button:hover .Button-line,
+.Button:focus .Button-line {
+  animation-play-state: paused;
+}
+
+.Button-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.Button-line--outer {
+  stroke-dasharray: 336.05px 336.05px;
+  stroke-dashoffset: 0;
+  animation: outer-dashoffset infinite linear 6s;
+}
+
+.Button-line--inner {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 336.05px 336.05px;
+  animation: inner-dashoffset infinite 5s;
+}
+
+.Button-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+@keyframes outer-dashoffset {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 336.05px 336.05px;
+  }
+  50% {
+    stroke-dasharray: 224.03px 448.06px;
+  }
+  100% {
+    stroke-dashoffset: 672.1px;
+    stroke-dasharray: 336.05px 336.05px;
+  }
+}
+
+@keyframes inner-dashoffset {
+  0% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 336.05px 336.05px;
+  }
+  50% {
+    stroke-dasharray: 224.03px 448.06px;
+  }
+  100% {
+    stroke-dashoffset: -672.1px;
+    stroke-dasharray: 336.05px 336.05px;
+  }
+}
+
+
+/* DARK MODE */
+body.dark {background-color: #292c35;} /* #9b59b6 */
+
+body.dark h1, body.dark .support a {color: #fff;}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-label {
+  background-color: #51efd7;
+  width: 40px;
+  height: 16px;
+  top: 11px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-moon {color: #f1c40f;}
+
+.fa-sun {color: #f39c12;}
+
+.checkbox-label .ball {
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(24px);
+}
