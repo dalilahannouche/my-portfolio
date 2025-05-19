@@ -7,7 +7,7 @@ function Hero() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="hero">
+    <div id="home" className="hero">
       <div
         className="shine profile-container"
         onMouseEnter={() => setIsHovered(true)}
