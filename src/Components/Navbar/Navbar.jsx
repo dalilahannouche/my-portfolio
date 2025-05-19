@@ -9,12 +9,16 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import menu_close from "../../assets/menu_close.png";
 
 const Navbar = () => {
+  // DarkMode
   const [isDarkMode, setIsDarkMode] = useState(false);
+  // Menu Mobile
   const [menu, setMenu] = useState("home");
   const menuRef = useRef();
+
   const openMenu = () => {
-    menuRef.current.style.right = "0";
+    menuRef.current.style.right = "0px";
   };
+
   const closeMenu = () => {
     menuRef.current.style.right = "-350px";
   };
@@ -35,49 +39,47 @@ const Navbar = () => {
     <div className="navbar">
       <img src={logo} alt="logo" />
       <img src={menu_open} onClick={openMenu} alt="" className="nav-mob-open" />
-      <div className="nav-menu">
-        <ul>
-          <img
-            src={menu_close}
-            onClick={closeMenu}
-            alt=""
-            className="nav-mob-close"
-          />
-          <li
-            onClick={() => setMenu("home")}
-            className={menu === "home" ? "active" : ""}
-          >
-            <AnchorLink href="#home" className="anchor-link" offset={50}>
-              <p>Home</p>
-            </AnchorLink>
-          </li>
-          <li
-            onClick={() => setMenu("about")}
-            className={menu === "about" ? "active" : ""}
-          >
-            {" "}
-            <AnchorLink href="#about" className="anchor-link" offset={50}>
-              <p>About Me</p>
-            </AnchorLink>
-          </li>
-          <li
-            onClick={() => setMenu("projects")}
-            className={menu === "projects" ? "active" : ""}
-          >
-            <AnchorLink href="#projects" className="anchor-link" offset={50}>
-              <p>Projects</p>
-            </AnchorLink>
-          </li>
-          <li
-            onClick={() => setMenu("contact")}
-            className={menu === "contact" ? "active" : ""}
-          >
-            <AnchorLink href="#contact" className="anchor-link" offset={50}>
-              <p>Contact</p>
-            </AnchorLink>
-          </li>
-        </ul>
-      </div>
+      <ul ref={menuRef} className="nav-menu">
+        <img
+          src={menu_close}
+          onClick={closeMenu}
+          alt=""
+          className="nav-mob-close"
+        />
+        <li
+          onClick={() => setMenu("home")}
+          className={menu === "home" ? "active" : ""}
+        >
+          <AnchorLink href="#home" className="anchor-link" offset={50}>
+            <p>Home</p>
+          </AnchorLink>
+        </li>
+        <li
+          onClick={() => setMenu("about")}
+          className={menu === "about" ? "active" : ""}
+        >
+          {" "}
+          <AnchorLink href="#about" className="anchor-link" offset={50}>
+            <p>About Me</p>
+          </AnchorLink>
+        </li>
+        <li
+          onClick={() => setMenu("projects")}
+          className={menu === "projects" ? "active" : ""}
+        >
+          <AnchorLink href="#projects" className="anchor-link" offset={50}>
+            <p>Projects</p>
+          </AnchorLink>
+        </li>
+        <li
+          onClick={() => setMenu("contact")}
+          className={menu === "contact" ? "active" : ""}
+        >
+          <AnchorLink href="#contact" className="anchor-link" offset={50}>
+            <p>Contact</p>
+          </AnchorLink>
+        </li>
+      </ul>
       <div className="right-side">
         <div className="nav-connect">
           {/* <button className="button-85">Connect With Me </button> */}

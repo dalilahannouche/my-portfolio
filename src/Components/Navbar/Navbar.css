@@ -217,14 +217,14 @@ body.dark h1, body.dark .support a {color: #fff;}
     .nav-mob-open{
         display: block;
         position: fixed;
-        right: 51px;
+        right: 30px;
     }
     .nav-mob-close{
         display: block;
         position: relative;
-        top: 30px;
-        left: 290px;
-        width: 30px;
+        top: 18px;
+        left: 282px;
+        width: 55px;
     }
     .nav-menu{
       position: fixed;
@@ -251,7 +251,9 @@ body.dark h1, body.dark .support a {color: #fff;}
         font-size: 30px;
         padding-left: 100px;
         flex-direction: row;
-        gap:20px
+        margin-top: 44px;
+        background-position: 0 0;
+        width: 100%;
     }
 }
 
