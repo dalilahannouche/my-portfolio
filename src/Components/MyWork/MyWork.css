@@ -1,45 +1,90 @@
-/*.myworkimage{
-    max-height: 200px;
-    object-fit: cover;
-}*/
-.mywork{
+.mywork {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 80px;
-    margin : 80px 170px;
+    margin: 80px 170px;
 }
-.mywork-title{
+
+.mywork-title {
     position: relative;
+    text-align: center;
 }
-.mywork-title h1{
-   padding: 0px 30px;
-   font-size : 80px;
-   font-weight: 600 ;
+
+.mywork-title h1 {
+    padding: 0px 30px;
+    font-size: 80px;
+    font-weight: 600;
 }
-.mywork-title img{
+
+.mywork-title img {
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index:-1;
-}
-.mywork-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:40px;
-}
-.mywork-container img{
-    box-sizing: border-box;
-    width: 349px;
-    height: 260px;
-    transition: 0.3s;
-    cursor: pointer;
+    z-index: -1;
 }
 
-.mywork-container img:hover{
-    transform: scale(1.10);
-    border:4px solid #ff00ff;
-    border-radius: 10px;
+/* GRID PAR DÉFAUT : GRAND ÉCRAN */
+.mywork-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.mywork-container img {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 349px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
     transition: 0.3s;
-}   
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.mywork-container img:hover {
+    transform: scale(1.05);
+    border: 4px solid #ff00ff;
+    transition: 0.3s;
+}
+
+/* ÉCRANS MOYENS - TABLETTES */
+@media (max-width: 1078px) {
+    .mywork {
+        margin: 60px 60px;
+    }
+
+    .mywork-title h1 {
+        font-size: 60px;
+    }
+
+    .mywork-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* PETITS ÉCRANS - MOBILES */
+@media (max-width: 768px) {
+    .mywork {
+        margin: 40px 20px;
+        gap: 40px;
+    }
+
+    .mywork-title h1 {
+        font-size: 40px;
+        padding: 0 10px;
+    }
+
+    .mywork-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .mywork-container img {
+        max-width: 100%;
+        height: auto;
+    }
+}

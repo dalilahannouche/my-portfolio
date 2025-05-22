@@ -18,41 +18,31 @@ function About() {
           {/* Paragraph Section */}
           <div className="about-para">
             <p>
-              Having always enjoyed bringing digital experiences to life, I
-              naturally gravitated towards front-end development. I take
-              particular care in building interfaces that are both visually
-              appealing and user-friendly.
-            </p>
-            <p>
-              Currently, I am also expanding my skill set by learning Python at
-              ReDI School, which allows me to better understand back-end
-              processes and become a more well-rounded developer.
-            </p>
-            <p>
-              I’m constantly seeking to improve—exploring, experimenting, and
-              building with both curiosity and determination.
+              Passionate front-end developer crafting high-converting e-commerce
+              interfaces. Currently expanding into back-end with Python at ReDI
+              School to deliver full-stack web solutions.
             </p>
           </div>
 
           <div className="about-skills">
             <div className="about-skill">
               <p>Html 5 & CSS3</p>
-              <hr style={{ width: "50%" }} />
+              <hr style={{ width: "67%" }} />
             </div>
 
             <div className="about-skill">
               <p>Javascript</p>
-              <hr style={{ width: "60%" }} />
+              <hr style={{ width: "47%" }} />
             </div>
 
             <div className="about-skill">
               <p>React</p>
-              <hr style={{ width: "50%" }} />
+              <hr style={{ width: "40%" }} />
             </div>
 
             <div className="about-skill">
               <p>Python</p>
-              <hr style={{ width: "60%" }} />
+              <hr style={{ width: "48%" }} />
             </div>
 
             <div className="about-skill">
@@ -64,16 +54,16 @@ function About() {
       </div>
       <div className="about-achievements">
         <div className="about-achievement">
-          <h1>10+</h1>
+          <h1>4+</h1>
           <p>YEARS OF EXPERIENCE</p>
         </div>
         <div className="about-achievement">
-          <h1>90+</h1>
-          <p>PROJECTS COMPLETED</p>
+          <h1>40+</h1>
+          <p>PROJECTS DELIVERED</p>
         </div>
         <div className="about-achievement">
-          <h1>50+</h1>
-          <p>HAPPY CLIENTS</p>
+          <h1>1200+</h1>
+          <p>CUPS OF COFFEE WHILE CODING</p>
         </div>
       </div>
     </div>
