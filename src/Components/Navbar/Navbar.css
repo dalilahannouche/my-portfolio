@@ -196,7 +196,9 @@ body.dark h1, body.dark .support a {color: #fff;}
   text-decoration: none;
   color: inherit; /* hérite la couleur du parent */
 }
-
+.nav-mob-open{
+        display:none;
+    }
 .nav-mob-close{
     display: none;
 }
