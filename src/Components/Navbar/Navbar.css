@@ -784,3 +784,68 @@ body.dark .Button:hover {
     font-size: 12px;
   }
 }
+
+
+ @media screen and (max-width: 576px) {
+  .nav-mob-open {
+    display: block;
+  }
+   .nav-mob-close {
+    display: block;
+  }
+}
+
+
+
+
+@media (max-width: 768px) {
+  .navbar {
+    margin: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .nav-menu {
+    position: fixed;
+    flex-direction: column;
+    align-items: flex-start;
+    top: 0;
+    right: -350px;
+    background-color: #1F0016;
+    width: 280px;
+    height: 100vh;
+    padding: 120px 20px;
+    gap: 30px;
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+  }
+
+  .nav-mob-open {
+    display: block;
+    position: absolute;
+    top: 4px;
+    right: 20px;
+    width: 32px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .nav-mob-close {
+    display: block;
+    width: 24px;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .right-side {
+    display: none; /* Cacher en mobile si nécessaire */
+  }
+
+  .nav-connect,
+  .nav-music,
+  .checkbox-label {
+    display: none; /* Éventuellement masquer pour simplifier le menu mobile */
+  }
+}
