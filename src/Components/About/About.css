@@ -28,8 +28,8 @@
 }
 
 .about-left img {
-    width: 100%;
-    max-width: 1200px;
+    /*width: 100%;
+    max-width: 1200px;*/
     height: auto;
 }
 
@@ -223,3 +223,6 @@
         text-align: center;
     }
 }
+
+
+
