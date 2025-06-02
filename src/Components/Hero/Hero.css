@@ -146,3 +146,21 @@
     opacity: 0;
   }
   
+
+
+  .hero-resume {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.mario-icon {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  margin-top: 8px;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}

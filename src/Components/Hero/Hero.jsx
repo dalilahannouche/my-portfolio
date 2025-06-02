@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Hero.css";
-import profileImage from "../../assets/me_ghibli.png"; // Image par défaut
-import hoverImage from "../../assets/me_real.jpg"; // Image au hover
+import profileImage from "../../assets/me_ghibli.png";
+import hoverImage from "../../assets/me_real.jpg";
+import marioIcon from "../../assets/mario.png";
+import marioSound from "../../assets/music/mario-sound.mp3"; // ton son
 
 function Hero() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isResumeHovered, setIsResumeHovered] = useState(false);
+  const audioRef = useRef(null);
+
+  const handleResumeHover = () => {
+    setIsResumeHovered(true);
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0; // recommence au début
+      audioRef.current.play();
+    }
+  };
+
+  const handleResumeLeave = () => {
+    setIsResumeHovered(false);
+  };
 
   return (
     <div id="home" className="hero">
@@ -39,8 +55,21 @@ function Hero() {
       </p>
       <div className="hero-action">
         <div className="hero-connect">Connect with me</div>
-        <div className="hero-resume">My Resume</div>
+
+        <div
+          className="hero-resume"
+          onMouseEnter={handleResumeHover}
+          onMouseLeave={handleResumeLeave}
+        >
+          My Resume
+          {isResumeHovered && (
+            <img src={marioIcon} alt="Mario Icon" className="mario-icon" />
+          )}
+        </div>
       </div>
+
+      {/* Audio element caché */}
+      <audio ref={audioRef} src={marioSound} />
     </div>
   );
 }
