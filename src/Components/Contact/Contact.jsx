@@ -3,6 +3,7 @@ import "./Contact.css";
 import mail_icon from "../../assets/mail-icon.svg";
 import location_icon from "../../assets/location-icon.svg";
 import call_icon from "../../assets/call-icon.svg";
+import rose_icon from "../../assets/rose-icon.svg";
 import { useState } from "react";
 
 const Contact = () => {
@@ -58,13 +59,16 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <form onSubmit={onSubmit} className="contact-right">
+        {/* <form onSubmit={onSubmit} className="contact-right">
           <div className="contact-form">
             <label htmlFor="name">Your Name</label>
+            <img src={rose_icon} alt="icon" className="textarea-icon" />
             <input type="text" placeholder="Enter Your Name" name="name" />
             <label htmlFor="email">Your Email</label>
+            <img src={rose_icon} alt="icon" className="textarea-icon" />
             <input type="email" placeholder="Enter your email" name="email" />
             <label htmlFor="">Write your message</label>
+            <img src={rose_icon} alt="icon" className="textarea-icon" />
             <textarea
               name="message"
               rows="8"
@@ -73,6 +77,45 @@ const Contact = () => {
             <button type="submit" className="contact-submit">
               Submit now
             </button>
+            {result && (
+              <p
+                className={`form-result ${
+                  result === "Sending..." ? "sending" : "done"
+                }`}
+              >
+                {result}
+              </p>
+            )}
+          </div>
+        </form> */}
+        <form onSubmit={onSubmit} className="contact-right">
+          <div className="contact-form">
+            <label htmlFor="name">Your Name</label>
+            <div className="input-container">
+              <img src={rose_icon} alt="icon" className="input-icon" />
+              <input type="text" placeholder="Enter Your Name" name="name" />
+            </div>
+
+            <label htmlFor="email">Your Email</label>
+            <div className="input-container">
+              <img src={rose_icon} alt="icon" className="input-icon" />
+              <input type="email" placeholder="Enter your email" name="email" />
+            </div>
+
+            <label htmlFor="message">Write your message</label>
+            <div className="textarea-container">
+              <img src={rose_icon} alt="icon" className="textarea-icon" />
+              <textarea
+                name="message"
+                rows="8"
+                placeholder="Write your message here"
+              ></textarea>
+            </div>
+
+            <button type="submit" className="contact-submit">
+              Submit now
+            </button>
+
             {result && (
               <p
                 className={`form-result ${
