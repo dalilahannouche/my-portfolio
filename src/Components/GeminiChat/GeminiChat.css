@@ -10,7 +10,6 @@
     right: 20px;
     height: 80px;
     width: 80px;
-    background-image: linear-gradient(to right bottom, #3ef9e8, #00cae0, #009bcc, #006caa, #1d3e7c);
     display: flex;
     z-index: 998;
     border-radius: 100%;
@@ -21,7 +20,7 @@
     justify-content: center;
 
     img{
-        width: 72px;
+        width: 120px;
     }
 
     &:hover{
@@ -94,7 +93,7 @@
 
 /* Fermeture du bouton */
 .close {
-    background-color: var(--black);
+    background-color: #ff66c4;
     color: white;
     border: none;
     border-radius: 20px 20px 0 0;
