@@ -14,7 +14,7 @@ export default function GeminiChatbot() {
     setMessages([
       {
         role: "model",
-        text: "Hi, Dalila is a Gemini, how can you help her? (I suggest you to hire her)",
+        text: "Hi ! Iam Dalila, Gemini by sign and by API 😄 Want to see how I can help you?",
       },
     ]);
   }, []);

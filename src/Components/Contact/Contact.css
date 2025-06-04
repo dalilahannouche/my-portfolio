@@ -93,11 +93,11 @@
 .contact-right input,
 .contact-right textarea {
   border-radius: 4px;
-  border: none;
-  background-color: #32323c;
+  border: none!important;
+  background-color: #f0f0f1d1;
   font-size: 20px;
   padding: 20px;
-  color: #A0A0A0;
+  color: rgb(1, 1, 1);
   font-family: Outfit;
   width: 100%;
 }
@@ -108,19 +108,25 @@
 }
 
 .contact-submit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(264deg, #DF8908 -5.09%, #B415FF 100%);
-  color: white;
-  font-size: 20px;
-  font-weight: 600;
-  width: 200px;
-  height: 60px;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    padding: 18px;
+    cursor: pointer;
+    box-sizing: border-box;
+    color: black;
+    border-color: transparent;
+    border-style: solid;
+    background: linear-gradient(45deg, rgba(255, 193, 7, 1) 0%, #fbe516 100%);
+    box-shadow: 0 0 0 5px #ff914e4d;
+    border-image: url(https://assets.codepen.io/919888/original-1-.gif) 100% / 0 2rem 2rem 0 / 1.2rem;
+    font-weight: 600;
+    width: 200px;
+    height: 60px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .contact-submit:hover {
@@ -201,32 +207,43 @@
   width: 100%;
 }
 
+.input-container input, .textarea-container textarea {
+    padding-left: 80px;
+    border: 1px solid;
+    box-shadow: 0 -8px 0 -4px #fff, 0 -16px 0 -8px #fff, 0 8px 0 -4px #fff, 0 16px 0 -8px #fff, 2px 0 0 2px #000, -2px 0 0 2px #000, 0 -8px #000, 0 8px #000, 0 -18px 0 -6px #000, 0 18px 0 -6px #000;
+}
+
 .input-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   left: 15px;
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 50px;
   opacity: 0.6;
   pointer-events: none;
 }
 
 .textarea-icon {
   position: absolute;
-  top: 10%;
+  top: 3%;
   left: 15px;
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 50px;
   opacity: 0.6;
   pointer-events: none;
 }
 
 
 .input-container input {
-  padding-left: 50px;
+  padding-left: 80px;
 }
 
 .textarea-container textarea {
-  padding-left: 50px;
+  padding-left: 80px;
+}
+
+
+::placeholder {
+    color: #b783a596;
 }

@@ -3,7 +3,7 @@ import "./Contact.css";
 import mail_icon from "../../assets/mail-icon.svg";
 import location_icon from "../../assets/location-icon.svg";
 import call_icon from "../../assets/call-icon.svg";
-import rose_icon from "../../assets/rose-icon.svg";
+import rose_icon from "../../assets/pink-rose-icon.svg";
 import { useState } from "react";
 
 const Contact = () => {
