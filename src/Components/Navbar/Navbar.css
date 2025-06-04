@@ -70,7 +70,7 @@ img[alt="sound"]{
   width: 150px;
   height: 50px;
   position: relative;
-  color: #98A5A6;
+  color: #83380bb5;
   font-size: 15px;
   transition: transform 300ms, color 300ms;
   cursor: pointer;
@@ -290,9 +290,7 @@ body.dark .nav-menu li.active {
   color: #51efd7;
 }
 
-body.dark .nav-menu {
-  background-color: #121212;
-}
+
 
 body.dark .nav-mob-close {
   filter: invert(1);
@@ -463,7 +461,7 @@ img[alt="sound"]{
   width: 150px;
   height: 50px;
   position: relative;
-  color: #98A5A6;
+  color: #60530c;
   font-size: 15px;
   transition: transform 300ms, color 300ms;
   cursor: pointer;
@@ -684,7 +682,7 @@ body.dark .nav-menu li.active {
 }
 
 body.dark .nav-menu {
-  background-color: #121212;
+  background-color: none;
 }
 
 body.dark .nav-mob-close {
