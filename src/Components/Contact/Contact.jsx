@@ -1,8 +1,8 @@
 import React from "react";
 import "./Contact.css";
-import mail_icon from "../../assets/mail-icon.svg";
-import location_icon from "../../assets/location-icon.svg";
-import call_icon from "../../assets/call-icon.svg";
+import linkedin_icon from "../../assets/linkedin.svg";
+import fiverr_icon from "../../assets/fiverr-icon.svg";
+import github_icon from "../../assets/github-icon.svg";
 import rose_icon from "../../assets/pink-rose-icon.svg";
 import { useState } from "react";
 
@@ -46,16 +46,26 @@ const Contact = () => {
           </p>
           <div className="contact-details">
             <div className="contact-detail">
-              <img src={mail_icon} alt="" />
-              <p>XXXXXX</p>
+              <a
+                href="https://www.linkedin.com/in/dalilahannouche/"
+                target="_blank"
+              >
+                <img src={linkedin_icon} alt="" />
+              </a>
+              <p>Say hi on LinkedIn</p>
             </div>
             <div className="contact-detail">
-              <img src={call_icon} alt="" />
-              <p>XXXXX</p>
+              <a href="https://github.com/dalilahannouche" target="_blank">
+                <img src={github_icon} alt="" />
+              </a>
+              <p>Dev stuff lives here</p>
             </div>
             <div className="contact-detail">
-              <img src={location_icon} alt="" />
-              <p>Berlin, Germany</p>
+              <a href="https://www.fiverr.com/lamasara" target="_blank">
+                <img src={fiverr_icon} alt="" />
+              </a>
+
+              <p>Hire me here!</p>
             </div>
           </div>
         </div>

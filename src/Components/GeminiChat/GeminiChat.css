@@ -177,3 +177,14 @@ div.error-model p{
   animation: l1 1.5s steps(4) infinite;
 }
 @keyframes l1 {to{clip-path: inset(0 -34% 0 0)}}
+
+@media (max-width: 600px) {
+.chat-button {
+    img {
+        width: 76px;
+        margin-left: 23px;
+    }
+}
+}
+
+

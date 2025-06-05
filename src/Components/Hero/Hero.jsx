@@ -4,6 +4,7 @@ import profileImage from "../../assets/me_ghibli.png";
 import hoverImage from "../../assets/me_real.jpg";
 import marioIcon from "../../assets/mario.png";
 import marioSound from "../../assets/music/mario-sound.mp3"; // ton son
+import myCV from "../../assets/dalila-hannouche -CV.pdf"; // chemin vers le CV
 
 function Hero() {
   const [isHovered, setIsHovered] = useState(false);
@@ -61,10 +62,12 @@ function Hero() {
           onMouseEnter={handleResumeHover}
           onMouseLeave={handleResumeLeave}
         >
-          My Resume
-          {isResumeHovered && (
-            <img src={marioIcon} alt="Mario Icon" className="mario-icon" />
-          )}
+          <a className="cv" href={myCV} download>
+            My Resume
+            {isResumeHovered && (
+              <img src={marioIcon} alt="Mario Icon" className="mario-icon" />
+            )}
+          </a>
         </div>
       </div>
 
