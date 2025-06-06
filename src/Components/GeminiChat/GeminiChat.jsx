@@ -15,7 +15,7 @@ export default function GeminiChatbot() {
   const recognition = SpeechRecognition ? new SpeechRecognition() : null;
 
   if (recognition) {
-    recognition.lang = "fr-FR";
+    recognition.lang = "en-EN";
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
   }
