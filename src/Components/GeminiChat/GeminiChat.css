@@ -28,22 +28,7 @@
     }
 }
 
-.chat-window.open{
-    position: fixed;
-    bottom: 30px;
-    right: 20px;
-    height: 500px;
-    width: 360px;
-    display: flex;
-    z-index: 999;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: white;
-    overflow-y: auto; /* Utilise 'auto' pour éviter le scroll fantôme */
-    border-radius: 20px;
-    box-sizing: border-box; /* Garantit aucune dimension parasite */
-}
+
 .chat-window {
     *{
         font-family: "Haleway", sans-serif;
@@ -114,19 +99,19 @@ div.error-model p{
     color : #d00c0c;
 }
 
-.chat div.model p {
+/*.chat div.model p {
     background-color: #9191f5;
-}
+}*/
 
 .chat div.user {
     display: flex;
     justify-content: flex-end;
 }
 
-.chat div.user p {
+/*.chat div.user p {
     background-color: var(--blue);
     color: #ffffff;
-}
+}*/
 
 /* Zone de saisie */
 .input-area {
@@ -188,3 +173,94 @@ div.error-model p{
 }
 
 
+
+
+.chat-window.open {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.chat {
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.model {
+  align-self: flex-start;
+  background-color: #e0e7ff;
+  color: #1e40af;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+.user {
+  align-self: flex-end;
+  background-color: #e2f7e1;
+  color: #14532d;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+.input-area {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  position: relative;
+}
+
+.input-wrapper {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input[type="text"] {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.mic-inside {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.loader {
+  margin: 10px auto;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #ccc;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+button.mic-inside {
+    background: transparent;
+}

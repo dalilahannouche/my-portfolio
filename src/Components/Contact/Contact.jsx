@@ -102,19 +102,16 @@ const Contact = () => {
           <div className="contact-form">
             <label htmlFor="name">Your Name</label>
             <div className="input-container">
-              <img src={rose_icon} alt="icon" className="input-icon" />
               <input type="text" placeholder="Enter Your Name" name="name" />
             </div>
 
             <label htmlFor="email">Your Email</label>
             <div className="input-container">
-              <img src={rose_icon} alt="icon" className="input-icon" />
               <input type="email" placeholder="Enter your email" name="email" />
             </div>
 
             <label htmlFor="message">Write your message</label>
             <div className="textarea-container">
-              <img src={rose_icon} alt="icon" className="textarea-icon" />
               <textarea
                 name="message"
                 rows="8"

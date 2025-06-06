@@ -10,14 +10,55 @@ export default function GeminiChatbot() {
   const [loading, setLoading] = useState(false);
   const chatRef = useRef(null);
 
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+  if (recognition) {
+    recognition.lang = "fr-FR";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+  }
+
+  const startListening = () => {
+    if (!recognition) {
+      alert("La reconnaissance vocale n’est pas supportée par ce navigateur.");
+      return;
+    }
+
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInput((prev) => prev + " " + transcript);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Erreur reconnaissance vocale :", event.error);
+    };
+  };
+
   useEffect(() => {
-    setMessages([
-      {
-        role: "model",
-        text: "Hi ! Iam Dalila, Gemini by sign and by API 😄 Want to see how I can help you?",
-      },
-    ]);
+    const introMessage = {
+      role: "model",
+      text: "Hi! I'm Dalila, Gemini by sign and by API 😄 Want to see how I can help you?",
+    };
+
+    const savedMessages = localStorage.getItem("chatMessages");
+    if (savedMessages) {
+      const parsed = JSON.parse(savedMessages);
+      const exists = parsed.some(
+        (msg) => msg.role === "model" && msg.text.includes("Gemini by sign")
+      );
+      setMessages(exists ? parsed : [introMessage, ...parsed]);
+    } else {
+      setMessages([introMessage]);
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("chatMessages", JSON.stringify(messages));
+  }, [messages]);
 
   useEffect(() => {
     if (chatRef.current) {
@@ -87,6 +128,7 @@ export default function GeminiChatbot() {
           <button className="close" onClick={() => setOpen(false)}>
             Close
           </button>
+
           <div className="chat" ref={chatRef}>
             {messages.map((msg, index) => (
               <div
@@ -106,13 +148,22 @@ export default function GeminiChatbot() {
           </div>
 
           <div className="input-area">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Type a message..."
-            />
+            <div className="input-wrapper">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Write or speak ..."
+              />
+              <button
+                type="button"
+                className="mic-inside"
+                onClick={startListening}
+              >
+                🎤
+              </button>
+            </div>
             <button onClick={sendMessage}>
               <img src={sendicon} alt="Send" />
             </button>
