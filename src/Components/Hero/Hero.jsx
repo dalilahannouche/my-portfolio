@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./Hero.css";
-import profileImage from "../../assets/me_ghibli.png";
+import profileImage from "../../assets/me_ghibli.jpg";
 import hoverImage from "../../assets/me_real.jpg";
 import marioIcon from "../../assets/mario.png";
 import marioSound from "../../assets/music/mario-sound.mp3"; // ton son

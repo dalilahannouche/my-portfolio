@@ -3,7 +3,6 @@ import "./Contact.css";
 import linkedin_icon from "../../assets/linkedin.svg";
 import fiverr_icon from "../../assets/fiverr-icon.svg";
 import github_icon from "../../assets/github-icon.svg";
-import rose_icon from "../../assets/pink-rose-icon.svg";
 import { useState } from "react";
 
 const Contact = () => {
@@ -69,35 +68,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        {/* <form onSubmit={onSubmit} className="contact-right">
-          <div className="contact-form">
-            <label htmlFor="name">Your Name</label>
-            <img src={rose_icon} alt="icon" className="textarea-icon" />
-            <input type="text" placeholder="Enter Your Name" name="name" />
-            <label htmlFor="email">Your Email</label>
-            <img src={rose_icon} alt="icon" className="textarea-icon" />
-            <input type="email" placeholder="Enter your email" name="email" />
-            <label htmlFor="">Write your message</label>
-            <img src={rose_icon} alt="icon" className="textarea-icon" />
-            <textarea
-              name="message"
-              rows="8"
-              placeholder="Write your message here"
-            ></textarea>
-            <button type="submit" className="contact-submit">
-              Submit now
-            </button>
-            {result && (
-              <p
-                className={`form-result ${
-                  result === "Sending..." ? "sending" : "done"
-                }`}
-              >
-                {result}
-              </p>
-            )}
-          </div>
-        </form> */}
         <form onSubmit={onSubmit} className="contact-right">
           <div className="contact-form">
             <label htmlFor="name">Your Name</label>
