@@ -242,11 +242,11 @@
     gap: 20px;
 }
 
-input:focus {
+input, textarea:focus {
   outline: none;
   box-shadow: none;
   border: 1px solid transparent; /* optionnel si tu veux aussi masquer border */
 }
-input {
+input,textarea {
   transition: border 0.3s ease, box-shadow 0.3s ease;
 }
