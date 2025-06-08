@@ -41,7 +41,7 @@ export default function GeminiChatbot() {
   useEffect(() => {
     const introMessage = {
       role: "model",
-      text: "Hi! I'm Dalila, Gemini by sign and by API 😄 Want to see how I can help you?",
+      text: "Hi! I'm Dalila, Gemini by sign and by API 😄 Would you like to know more about my experience, technical skills, or the projects I’ve worked on?",
     };
 
     const savedMessages = localStorage.getItem("chatMessages");

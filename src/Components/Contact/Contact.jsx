@@ -41,7 +41,7 @@ const Contact = () => {
             I'm always open to new opportunities, collaborations, or simply a
             friendly chat about web development, design, or tech in general.
             Whether you're looking for a front-end developer, need help bringing
-            a project to life, or just want to connect—feel free to reach out!
+            a project to life, or just want to connect,feel free to reach out!
           </p>
           <div className="contact-details">
             <div className="contact-detail">
@@ -64,7 +64,7 @@ const Contact = () => {
                 <img src={fiverr_icon} alt="" />
               </a>
 
-              <p>Hire me here!</p>
+              <p>Hire me !</p>
             </div>
           </div>
         </div>
