@@ -10,8 +10,8 @@ const Footer = () => {
         <div className="footer-top-left">
           <img src={footer_logo} alt="" />
           <p>
-            I’m constantly seeking to improve—exploring, experimenting, and
-            building with both curiosity and determination.
+            Driven by curiosity and a love for clean code, I build, break, and
+            rebuild until I get it right.
           </p>
         </div>
         {/* <div className="footer-top-right">
@@ -30,27 +30,27 @@ const Footer = () => {
         <div className="footer-bottom-right">
           <p>
             <a href="https://www.youtube.com/playlist?list=PLqP8kO2x0U8ioFv7UZvoA2fUWkLCfF-dD">
-              My Guitare
+              My Guitar Music
             </a>
           </p>
           <p>
             <a href="https://www.youtube.com/playlist?list=PLqP8kO2x0U8gmVxdJSa3cMrJghz-ueQpn">
-              My Piano
+              My Piano Music
             </a>
           </p>
           <p>
             <a href="https://www.babelio.com/auteur/Dalila-Hannouche/500406">
-              My book
+              My Book
             </a>
           </p>
           <p>
             <a href="https://www.instagram.com/dalila_hannouche/">
-              My paintings
+              My Paintings
             </a>
           </p>
           <p>
             <a href="https://hannouchedalila.wordpress.com/">
-              My poetry in French
+              My Poetry in French
             </a>
           </p>
         </div>

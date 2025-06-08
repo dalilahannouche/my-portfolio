@@ -3,7 +3,7 @@ import "./Hero.css";
 import profileImage from "../../assets/me_ghibli.jpg";
 import hoverImage from "../../assets/me_real.jpg";
 import marioIcon from "../../assets/mario.png";
-import marioSound from "../../assets/music/mario-sound.mp3"; // ton son
+//import marioSound from "../../assets/music/mario-sound.mp3"; // ton son
 import myCV from "../../assets/dalila-hannouche -CV.pdf"; // chemin vers le CV
 
 function Hero() {
@@ -68,15 +68,15 @@ function Hero() {
         >
           <a className="cv" href={myCV} download>
             My Resume
-            {isResumeHovered && (
+            {/* {isResumeHovered && (
               <img src={marioIcon} alt="Mario Icon" className="mario-icon" />
-            )}
+            )}*/}
           </a>
         </div>
       </div>
 
       {/* Audio element caché */}
-      <audio ref={audioRef} src={marioSound} />
+      {/* <audio ref={audioRef} src={marioSound} /> */}
     </div>
   );
 }

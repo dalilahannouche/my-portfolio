@@ -83,6 +83,12 @@
   margin-bottom: 30px;
 }
 
+.footer-bottom-left{
+     
+    color: #774283;
+    font-weight: 600;
+}
+
 .footer-top-left img {
   width: 180px;
 }
@@ -180,9 +186,22 @@
 
 
 .footer-bottom-right a{
-  text-decoration: none;
-  color: inherit;
+  color: #ffffff;
+    font-size: 17px;
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    display: inline-block;
+    transition: all 0.4s;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2));
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    cursor: pointer;
 
+}
+
+.footer-bottom-right a:hover {
+    background-position: 0 0;
 }
 
 
@@ -192,7 +211,7 @@
   align-items: center;     /* centre verticalement (optionnel) */
   text-align: center;      /* centre le texte à l'intérieur */
   gap: 1rem;               /* espace entre le logo et le texte */
-  padding: 2rem;
+ /* padding: 2rem;*/
 }
 
 .footer-top-left {

@@ -1,19 +1,29 @@
-import React, { useEffect, useState, useRef } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
-import music from "../../assets/icon-musik.gif";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import menu_open from "../../assets/menu_open.svg";
-import { FaMoon, FaSun } from "react-icons/fa";
 import menu_close from "../../assets/menu_close.png";
+import musicFile from "../../assets/music/music.mp3"; // Ton fichier mp3 ici
+import { FaMoon, FaSun, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 
 const Navbar = () => {
-  // DarkMode
   const [isDarkMode, setIsDarkMode] = useState(false);
-  // Menu Mobile
   const [menu, setMenu] = useState("home");
   const menuRef = useRef();
+
+  // Musique
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   const openMenu = () => {
     menuRef.current.style.right = "0px";
@@ -23,7 +33,6 @@ const Navbar = () => {
     menuRef.current.style.right = "-350px";
   };
 
-  // Appliquer la classe .dark au body
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("dark");
@@ -31,6 +40,7 @@ const Navbar = () => {
       document.body.classList.remove("dark");
     }
   }, [isDarkMode]);
+
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -46,56 +56,37 @@ const Navbar = () => {
           alt=""
           className="nav-mob-close"
         />
-        <li
-          onClick={() => setMenu("home")}
-          className={menu === "home" ? "active" : ""}
-        >
-          <AnchorLink href="#home" className="anchor-link" offset={50}>
-            <p>Home</p>
-          </AnchorLink>
-        </li>
-        <li
-          onClick={() => setMenu("about")}
-          className={menu === "about" ? "active" : ""}
-        >
-          {" "}
-          <AnchorLink href="#about" className="anchor-link" offset={50}>
-            <p>About Me</p>
-          </AnchorLink>
-        </li>
-        <li
-          onClick={() => setMenu("projects")}
-          className={menu === "projects" ? "active" : ""}
-        >
-          <AnchorLink href="#projects" className="anchor-link" offset={50}>
-            <p>Projects</p>
-          </AnchorLink>
-        </li>
-        <li
-          onClick={() => setMenu("contact")}
-          className={menu === "contact" ? "active" : ""}
-        >
-          <AnchorLink href="#contact" className="anchor-link" offset={50}>
-            <p>Contact</p>
-          </AnchorLink>
-        </li>
+        {["home", "about", "projects", "contact"].map((item) => (
+          <li
+            key={item}
+            onClick={() => setMenu(item)}
+            className={menu === item ? "active" : ""}
+          >
+            <AnchorLink href={`#${item}`} className="anchor-link" offset={50}>
+              <p>
+                {item === "about"
+                  ? "About Me"
+                  : item.charAt(0).toUpperCase() + item.slice(1)}
+              </p>
+            </AnchorLink>
+          </li>
+        ))}
       </ul>
+
       <div className="right-side">
         <div className="nav-connect">
-          {/* <button className="button-85">Connect With Me </button> */}
           <AnchorLink href="#contact" className="anchor-link" offset={50}>
-            <button class="Button">
+            <button className="Button">
               <svg
-                class="Button-svg"
+                className="Button-svg"
                 width="200"
                 height="50"
                 viewBox="0 0 300 80"
               >
                 <rect
-                  class="Button-line Button-line--outer"
-                  stroke-width="8"
+                  className="Button-line Button-line--outer"
+                  strokeWidth="8"
                   stroke="#fc7995"
-                  stroke-linecap="round"
                   fill="none"
                   x="4"
                   y="4"
@@ -104,10 +95,9 @@ const Navbar = () => {
                   rx="36"
                 />
                 <rect
-                  class="Button-line Button-line--inner"
-                  stroke-width="4"
+                  className="Button-line Button-line--inner"
+                  strokeWidth="4"
                   stroke="#ffcc5c"
-                  stroke-linecap="round"
                   fill="none"
                   x="4"
                   y="4"
@@ -116,13 +106,13 @@ const Navbar = () => {
                   rx="36"
                 />
               </svg>
-
-              <div class="Button-content">Let's Connect !</div>
+              <div className="Button-content">Let's Connect !</div>
             </button>
           </AnchorLink>
         </div>
+
+        {/* Dark Mode */}
         <div>
-          {/* Toggle Dark Mode */}
           <input
             type="checkbox"
             className="checkbox"
@@ -136,8 +126,11 @@ const Navbar = () => {
             <span className="ball" />
           </label>
         </div>
-        <div className="nav-music">
-          <img src={music} alt="sound" />
+
+        {/* Contrôle de la musique */}
+        <div className="nav-music" onClick={togglePlay}>
+          {isPlaying ? <FaVolumeUp size={24} /> : <FaVolumeMute size={24} />}
+          <audio ref={audioRef} src={musicFile} loop />
         </div>
       </div>
     </div>

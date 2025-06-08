@@ -46,7 +46,7 @@ img[alt="sound"]{
 }
 
 .nav-music{
-  padding-top: 10px;
+  padding-top: 3px;
   cursor: pointer;
 }
 
@@ -437,8 +437,9 @@ img[alt="sound"]{
 }
 
 .nav-music{
-  padding-top: 10px;
+  padding-top: 3px;
   cursor: pointer;
+  color: #e11c95;
 }
 
 .nav-menu{
@@ -847,3 +848,16 @@ body.dark .Button:hover {
     display: none; /* Éventuellement masquer pour simplifier le menu mobile */
   }
 }
+
+.nav-music {
+  padding-top: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.nav-music:hover {
+  transform: scale(1.1);
+}
+
