@@ -9,11 +9,25 @@ const MyWork = () => {
         <h1>My latest work</h1>
       </div>
       <div className="mywork-container">
-        {mywork_data.map((work, index) => {
-          return (
-            <img className="myworkimage" key={index} src={work.w_img} alt="" />
-          );
-        })}
+        {mywork_data.map((work, index) =>
+          work.w_link ? (
+            <a
+              key={index}
+              href={work.w_link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="myworkimage" src={work.w_img} alt={work.w_name} />
+            </a>
+          ) : (
+            <img
+              className="myworkimage"
+              key={index}
+              src={work.w_img}
+              alt={work.w_name}
+            />
+          )
+        )}
       </div>
     </div>
   );

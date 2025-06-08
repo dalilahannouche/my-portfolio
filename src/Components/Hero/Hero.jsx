@@ -55,7 +55,11 @@ function Hero() {
         focused on React.
       </p>
       <div className="hero-action">
-        <div className="hero-connect">Connect with me</div>
+        <div className="hero-connect">
+          <a href="https://www.linkedin.com/in/dalilahannouche/">
+            Connect with me
+          </a>
+        </div>
 
         <div
           className="hero-resume"

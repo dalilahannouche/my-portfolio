@@ -177,3 +177,10 @@
     width: 140px;
   }
 }
+
+
+.footer-bottom-right a{
+  text-decoration: none;
+  color: inherit;
+
+}
