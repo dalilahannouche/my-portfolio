@@ -49,9 +49,7 @@ const Footer = () => {
             </a>
           </p>
           <p>
-            <a href="https://hannouchedalila.wordpress.com/">
-              My Poetry in French
-            </a>
+            <a href="https://dalilahannouche.com">My Poetry in French</a>
           </p>
         </div>
       </div>
