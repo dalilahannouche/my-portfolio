@@ -33,7 +33,7 @@
   }
 
   .hero .profile:hover {
-    background-image: url('../../assets/me_real.png');
+    background-image: url('../../assets/me_real.jpg');
     width: 100%;
     height: 100%;
     display: block;
