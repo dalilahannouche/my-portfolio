@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./GeminiChat.css";
 import chatboticon from "../../assets/chatbot-icon.gif";
 import sendicon from "../../assets/send-icon.png";
-import { NativeEventSource, EventSourcePolyfill } from "event-source-polyfill";
+import { EventSourcePolyfill } from "event-source-polyfill";
 
 export default function GeminiChatbot() {
   const [messages, setMessages] = useState([]);
@@ -16,35 +16,29 @@ export default function GeminiChatbot() {
   const recognition = SpeechRecognition ? new SpeechRecognition() : null;
 
   if (recognition) {
-    recognition.lang = "en-EN";
+    recognition.lang = "fr-FR"; // FR par défaut
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
   }
 
   const startListening = () => {
-    if (!recognition) {
-      alert("La reconnaissance vocale n’est pas supportée par ce navigateur.");
-      return;
-    }
+    if (!recognition) return alert("Reconnaissance vocale non supportée.");
 
     recognition.start();
-
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       setInput((prev) => prev + " " + transcript);
     };
-
-    recognition.onerror = (event) => {
-      console.error("Erreur reconnaissance vocale :", event.error);
-    };
+    recognition.onerror = (event) =>
+      console.error("Erreur vocale :", event.error);
   };
 
+  // Initialisation des messages
   useEffect(() => {
     const introMessage = {
       role: "model",
-      text: "Hi! I'm Dalila, Gemini by sign and by API 😄 Would you like to know more about my experience, technical skills, or the projects I’ve worked on?",
+      text: "Hi! I'm Dalila, Gemini by sign and by API 😄 Would you like to know more about my experience, technical skills, or projects?",
     };
-
     const savedMessages = localStorage.getItem("chatMessages");
     if (savedMessages) {
       const parsed = JSON.parse(savedMessages);
@@ -62,59 +56,47 @@ export default function GeminiChatbot() {
   }, [messages]);
 
   useEffect(() => {
-    if (chatRef.current) {
+    if (chatRef.current)
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
-    }
   }, [messages, loading]);
 
-  const sendMessage = async () => {
-    const trimmed = input.trim();
+  const sendMessage = (trimmed) => {
     if (!trimmed) return;
 
-    const newMessages = [...messages, { role: "user", text: trimmed }];
-    setMessages(newMessages);
+    setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
     setInput("");
     setLoading(true);
 
-    try {
-      const response = await fetch(
-        "https://mon-chatbot-backend.onrender.com/api/chat",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message: trimmed }),
+    const url = `https://mon-chatbot-backend.onrender.com/api/chat?message=${encodeURIComponent(
+      trimmed
+    )}`;
+    const evtSource = new EventSourcePolyfill(url);
+
+    evtSource.onmessage = (e) => {
+      try {
+        const data = JSON.parse(e.data);
+        if (data.done) {
+          evtSource.close();
+          setLoading(false);
+        } else if (data.text) {
+          setMessages((prev) => [...prev, { role: "model", text: data.text }]);
         }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Erreur du serveur: ${response.status}`);
+      } catch (err) {
+        console.error("Erreur parsing SSE :", err);
       }
+    };
 
-      const data = await response.json();
-      if (!data || !data.message)
-        throw new Error("Réponse invalide du serveur.");
-
-      setMessages((prev) => [...prev, { role: "model", text: data.message }]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "model",
-          text: "This message could not be sent, please try again.",
-        },
-      ]);
-      console.error(error.message);
-    } finally {
+    evtSource.onerror = (err) => {
+      console.error("Erreur SSE :", err);
+      evtSource.close();
       setLoading(false);
-    }
+    };
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      sendMessage();
+      sendMessage(input.trim());
     }
   };
 
@@ -155,7 +137,7 @@ export default function GeminiChatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Write or speak ..."
+                placeholder="Write or Talk ..."
               />
               <button
                 type="button"
@@ -165,7 +147,7 @@ export default function GeminiChatbot() {
                 🎤
               </button>
             </div>
-            <button onClick={sendMessage}>
+            <button onClick={() => sendMessage(input.trim())}>
               <img src={sendicon} alt="Send" />
             </button>
           </div>
