@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./GeminiChat.css";
 import chatboticon from "../../assets/chatbot-icon.gif";
 import sendicon from "../../assets/send-icon.png";
-// EventSourcePolyfill si tu veux supporter POST SSE
-import { EventSourcePolyfill } from "event-source-polyfill";
+import { NativeEventSource, EventSourcePolyfill } from "event-source-polyfill";
 
 export default function GeminiChatbot() {
   const [messages, setMessages] = useState([]);
@@ -40,7 +39,6 @@ export default function GeminiChatbot() {
     };
   };
 
-  // Message d'intro
   useEffect(() => {
     const introMessage = {
       role: "model",
@@ -69,68 +67,48 @@ export default function GeminiChatbot() {
     }
   }, [messages, loading]);
 
-  // =========================
-  // sendMessage modifié pour SSE
-  // =========================
-  const sendMessage = () => {
+  const sendMessage = async () => {
     const trimmed = input.trim();
     if (!trimmed) return;
 
-    // Ajouter le message utilisateur
-    setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
+    const newMessages = [...messages, { role: "user", text: trimmed }];
+    setMessages(newMessages);
     setInput("");
     setLoading(true);
 
-    // EventSourcePolyfill permet POST SSE
-    const eventSource = new EventSourcePolyfill(
-      "https://mon-chatbot-backend.onrender.com/api/chat",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
+    try {
+      const response = await fetch(
+        "https://mon-chatbot-backend.onrender.com/api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: trimmed }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erreur du serveur: ${response.status}`);
       }
-    );
 
-    let botMessage = "";
+      const data = await response.json();
+      if (!data || !data.message)
+        throw new Error("Réponse invalide du serveur.");
 
-    eventSource.onmessage = (e) => {
-      const data = JSON.parse(e.data);
-
-      if (data.done) {
-        // Fin du message : remplacer le message "model-typing"
-        setMessages((prev) => [
-          ...prev.filter((m) => m.role !== "model-typing"),
-          { role: "model", text: botMessage },
-        ]);
-        setLoading(false);
-        eventSource.close();
-      } else if (data.text) {
-        // Affichage progressif du texte
-        botMessage += data.text;
-        setMessages((prev) => {
-          // Supprimer ancien message temporaire
-          const others = prev.filter((m) => m.role !== "model-typing");
-          return [...others, { role: "model-typing", text: botMessage }];
-        });
-      } else if (data.error) {
-        setMessages((prev) => [
-          ...prev,
-          { role: "model", text: data.error },
-        ]);
-        setLoading(false);
-        eventSource.close();
-      }
-    };
-
-    eventSource.onerror = (err) => {
-      console.error("Erreur SSE:", err);
+      setMessages((prev) => [...prev, { role: "model", text: data.message }]);
+    } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { role: "model", text: "Erreur serveur, veuillez réessayer." },
+        {
+          role: "model",
+          text: "This message could not be sent, please try again.",
+        },
       ]);
+      console.error(error.message);
+    } finally {
       setLoading(false);
-      eventSource.close();
-    };
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -159,8 +137,6 @@ export default function GeminiChatbot() {
                 className={
                   msg.role === "user"
                     ? "user"
-                    : msg.role === "model-typing"
-                    ? "model-typing"
                     : msg.text.includes("could not")
                     ? "error-model"
                     : "model"
