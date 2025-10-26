@@ -4,6 +4,7 @@ import linkedin_icon from "../../assets/linkedin.svg";
 import fiverr_icon from "../../assets/fiverr-icon.svg";
 import github_icon from "../../assets/github-icon.svg";
 import { useState } from "react";
+import LazyImage from "./LazyImage";
 
 const Contact = () => {
   const [result, setResult] = React.useState("");
@@ -49,19 +50,19 @@ const Contact = () => {
                 href="https://www.linkedin.com/in/dalilahannouche/"
                 target="_blank"
               >
-                <LazyLoadImage src={linkedin_icon} alt="" />
+                <LazyImage src={linkedin_icon} alt="" />
               </a>
               <p>Say hi on LinkedIn</p>
             </div>
             <div className="contact-detail">
               <a href="https://github.com/dalilahannouche" target="_blank">
-                <LazyLoadImage src={github_icon} alt="" />
+                <LazyImage src={github_icon} alt="" />
               </a>
               <p>Dev stuff lives here</p>
             </div>
             <div className="contact-detail">
               <a href="https://www.fiverr.com/lamasara" target="_blank">
-                <LazyLoadImage src={fiverr_icon} alt="" />
+                <LazyImage src={fiverr_icon} alt="" />
               </a>
 
               <p>Hire me !</p>

@@ -1,6 +1,7 @@
 import React from "react";
 import "./MyWork.css";
 import mywork_data from "../../assets/mywork_data";
+import LazyImage from "./LazyImage";
 
 const MyWork = () => {
   return (
@@ -17,7 +18,7 @@ const MyWork = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <LazyLoadImage
+              <LazyImage
                 className="myworkimage"
                 src={work.w_img}
                 alt={work.w_name}
@@ -25,7 +26,7 @@ const MyWork = () => {
               />
             </a>
           ) : (
-            <LazyLoadImage
+            <LazyImage
               className="myworkimage"
               key={index}
               src={work.w_img}

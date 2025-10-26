@@ -6,6 +6,7 @@ import menu_open from "../../assets/menu_open.svg";
 import menu_close from "../../assets/menu_close.png";
 import musicFile from "../../assets/music/music.mp3"; // Ton fichier mp3 ici
 import { FaMoon, FaSun, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import LazyImage from "./LazyImage";
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -47,8 +48,8 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <LazyLoadImage src={logo} alt="logo" effect="blur" />
-      <LazyLoadImage
+      <LazyImage src={logo} alt="logo" effect="blur" />
+      <LazyImage
         src={menu_open}
         onClick={openMenu}
         alt=""
@@ -56,7 +57,7 @@ const Navbar = () => {
         effect="blur"
       />
       <ul ref={menuRef} className="nav-menu">
-        <LazyLoadImage
+        <LazyImage
           src={menu_close}
           onClick={closeMenu}
           alt=""

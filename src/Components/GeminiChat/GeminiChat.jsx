@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./GeminiChat.css";
 import chatboticon from "../../assets/chatbot-icon.gif";
 import sendicon from "../../assets/send-icon.png";
+import LazyImage from "./LazyImage";
 
 export default function GeminiChatbot() {
   const [messages, setMessages] = useState([]);
@@ -168,7 +169,7 @@ export default function GeminiChatbot() {
   return (
     <>
       <div className="chat-button" onClick={() => setOpen(true)}>
-        <LazyLoadImage src={chatboticon} alt="Start chat" />
+        <LazyImage src={chatboticon} alt="Start chat" />
       </div>
 
       {open && (

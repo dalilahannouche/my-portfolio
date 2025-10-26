@@ -1,5 +1,7 @@
 import React from "react";
 import "./About.css";
+import LazyImage from "./LazyImage";
+
 import profile from "../../assets/dalila-about.gif";
 
 function About() {
@@ -11,7 +13,7 @@ function About() {
       <div className="about-sections">
         {/* Left Section */}
         <div className="about-left">
-          <LazyLoadImage src={profile} className="about-me" alt="" />
+          <LazyImage src={profile} className="about-me" alt="" />
         </div>
         {/* Right Section */}
         <div className="about-right">

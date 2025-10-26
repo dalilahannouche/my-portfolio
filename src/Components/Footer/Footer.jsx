@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import LazyImage from "./LazyImage";
 import footer_logo from "../../assets/logo.png"; // Assuming you have a logo image in the assets folder
 import user_icon from "../../assets/mail-icon.svg";
 
@@ -8,7 +9,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-top">
         <div className="footer-top-left">
-          <LazyLoadImage src={footer_logo} alt="" />
+          <LazyImage src={footer_logo} alt="" />
           <p>
             Driven by curiosity and a love for clean code, I build, break, and
             rebuild until I get it right.

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./Hero.css";
 import profileImage from "../../assets/me_ghibli.jpg";
+import LazyImage from "./LazyImage";
 import hoverImage from "../../assets/me_real.jpg";
 //import marioSound from "../../assets/music/mario-sound.mp3"; // ton son
 import myCV from "../../assets/dalila-hannouche -CV.pdf"; // chemin vers le CV
@@ -29,12 +30,12 @@ function Hero() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <LazyLoadImage
+        <LazyImage
           src={profileImage}
           alt="Dalila Hannouche"
           className={`profile ${isHovered ? "fade-out" : "fade-in"}`}
         />
-        <LazyLoadImage
+        <LazyImage
           src={hoverImage}
           alt="Dalila Hannouche"
           className={`profile ${isHovered ? "fade-in" : "fade-out"}`}
