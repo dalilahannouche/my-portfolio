@@ -87,16 +87,39 @@ export default function GeminiChatbot() {
         }
       );
 
-      if (!response.ok) {
-        throw new Error(`Erreur du serveur: ${response.status}`);
+      if (!response.ok) throw new Error(`Erreur serveur: ${response.status}`);
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let partialMessage = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split("\n\n");
+
+        for (const line of lines) {
+          if (line.startsWith("data:")) {
+            const data = line.replace("data: ", "");
+            if (data === "[DONE]") break;
+
+            try {
+              const json = JSON.parse(data);
+              if (json.text) {
+                partialMessage += json.text;
+                setMessages((prev) => [
+                  ...prev.slice(0, -1),
+                  { role: "model", text: partialMessage },
+                ]);
+              }
+            } catch {}
+          }
+        }
       }
-
-      const data = await response.json();
-      if (!data || !data.message)
-        throw new Error("Réponse invalide du serveur.");
-
-      setMessages((prev) => [...prev, { role: "model", text: data.message }]);
     } catch (error) {
+      console.error(error);
       setMessages((prev) => [
         ...prev,
         {
@@ -104,7 +127,6 @@ export default function GeminiChatbot() {
           text: "This message could not be sent, please try again.",
         },
       ]);
-      console.error(error.message);
     } finally {
       setLoading(false);
     }
