@@ -166,7 +166,13 @@ export default function GeminiChatbot() {
                 <p>{msg.text}</p>
               </div>
             ))}
-            {loading && <div className="loader"></div>}
+            {loading && (
+              <div className="loader">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            )}
           </div>
 
           <div className="input-area">
