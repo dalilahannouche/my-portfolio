@@ -70,8 +70,8 @@ export default function GeminiChatbot() {
     const trimmed = input.trim();
     if (!trimmed) return;
 
-    const newMessages = [...messages, { role: "user", text: trimmed }];
-    setMessages(newMessages);
+    // 1️⃣ Ajoute le message utilisateur
+    setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
     setInput("");
     setLoading(true);
 
@@ -80,9 +80,7 @@ export default function GeminiChatbot() {
         "https://mon-chatbot-backend.onrender.com/api/chat",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message: trimmed }),
         }
       );
@@ -91,7 +89,9 @@ export default function GeminiChatbot() {
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-      let partialMessage = "";
+
+      let assistantText = "";
+      // 2️⃣ Ajoute une bulle vide pour le bot
       setMessages((prev) => [...prev, { role: "model", text: "" }]);
 
       while (true) {
@@ -102,33 +102,35 @@ export default function GeminiChatbot() {
         const lines = chunk.split("\n\n");
 
         for (const line of lines) {
-          if (line.startsWith("data:")) {
-            const data = line.replace("data: ", "");
-            if (data === "[DONE]") {
-              reader.cancel();
-              break;
-            }
+          if (!line.startsWith("data:")) continue;
+          const data = line.replace("data: ", "");
 
-            try {
-              const json = JSON.parse(data);
-              if (json.text) {
-                partialMessage += json.text;
+          if (data === "[DONE]") {
+            setLoading(false);
+            return;
+          }
 
-                setMessages((prev) => {
-                  const updated = [...prev];
-                  updated[updated.length - 1] = {
-                    role: "model",
-                    text: partialMessage,
-                  };
-                  return updated;
-                });
+          try {
+            const parsed = JSON.parse(data);
+            if (!parsed.text) continue;
 
-                // 👇 Laisse React respirer entre deux chunks pour une vraie animation fluide
-                await new Promise((r) => setTimeout(r, 25));
-              }
-            } catch (err) {
-              console.error("Erreur parsing JSON:", err);
-            }
+            assistantText += parsed.text;
+
+            // Affiche le chunk dans la bulle
+            setMessages((prev) => {
+              const updated = [...prev];
+              updated[updated.length - 1] = {
+                role: "model",
+                text: assistantText,
+              };
+              return updated;
+            });
+
+            // ⚡ Montre le loader pendant la pause
+            setLoading(true);
+            await new Promise((r) => setTimeout(r, 100)); // 100ms pause pour que les dots apparaissent
+          } catch (err) {
+            console.warn("Chunk non JSON :", data);
           }
         }
       }
@@ -141,7 +143,6 @@ export default function GeminiChatbot() {
           text: "This message could not be sent, please try again.",
         },
       ]);
-    } finally {
       setLoading(false);
     }
   };
@@ -180,6 +181,8 @@ export default function GeminiChatbot() {
                 <p>{msg.text}</p>
               </div>
             ))}
+
+            {/* 5️⃣ Loader animé pendant la génération */}
             {loading && messages[messages.length - 1]?.role === "model" && (
               <div className="loader">
                 <div></div>
