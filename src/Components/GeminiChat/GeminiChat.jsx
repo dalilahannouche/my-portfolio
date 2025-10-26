@@ -92,6 +92,7 @@ export default function GeminiChatbot() {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let partialMessage = "";
+      setMessages((prev) => [...prev, { role: "model", text: "" }]);
 
       while (true) {
         const { done, value } = await reader.read();
@@ -109,12 +110,18 @@ export default function GeminiChatbot() {
               const json = JSON.parse(data);
               if (json.text) {
                 partialMessage += json.text;
-                setMessages((prev) => [
-                  ...prev.slice(0, -1),
-                  { role: "model", text: partialMessage },
-                ]);
+                setMessages((prev) => {
+                  const updated = [...prev];
+                  updated[updated.length - 1] = {
+                    role: "model",
+                    text: partialMessage,
+                  };
+                  return updated;
+                });
               }
-            } catch {}
+            } catch (err) {
+              console.error("Erreur parsing JSON:", err);
+            }
           }
         }
       }
