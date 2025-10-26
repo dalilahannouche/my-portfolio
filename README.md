@@ -44,7 +44,7 @@ Your portfolio should now be running at `http://localhost:3000`.
 
 ## 💬 Chatbot Features
 
-![Chatbot GIF](https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif)
+![Chatbot GIF](src/assets/chatbot-icon.gif)
 
 - Secure backend on **Render** 🔐
 - Realistic **typing effect** for assistant responses
