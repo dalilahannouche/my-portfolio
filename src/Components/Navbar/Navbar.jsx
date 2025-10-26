@@ -54,14 +54,12 @@ const Navbar = () => {
         onClick={openMenu}
         alt=""
         className="nav-mob-open"
-        effect="blur"
       />
       <ul ref={menuRef} className="nav-menu">
         <LazyImage
           src={menu_close}
           onClick={closeMenu}
           alt=""
-          effect="blur"
           className="nav-mob-close"
         />
         {["home", "about", "projects", "contact"].map((item) => (
