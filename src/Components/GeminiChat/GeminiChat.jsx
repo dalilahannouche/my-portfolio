@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./GeminiChat.css";
 import chatboticon from "../../assets/chatbot-icon.gif";
 import sendicon from "../../assets/send-icon.png";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage/LazyImage";
 
 export default function GeminiChatbot() {
   const [messages, setMessages] = useState([]);

@@ -1,7 +1,7 @@
 import React from "react";
 import "./MyWork.css";
 import mywork_data from "../../assets/mywork_data";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage/LazyImage";
 
 const MyWork = () => {
   return (

@@ -6,7 +6,7 @@ import menu_open from "../../assets/menu_open.svg";
 import menu_close from "../../assets/menu_close.png";
 import musicFile from "../../assets/music/music.mp3"; // Ton fichier mp3 ici
 import { FaMoon, FaSun, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage/LazyImage";
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);

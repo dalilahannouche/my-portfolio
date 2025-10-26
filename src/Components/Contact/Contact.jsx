@@ -4,7 +4,7 @@ import linkedin_icon from "../../assets/linkedin.svg";
 import fiverr_icon from "../../assets/fiverr-icon.svg";
 import github_icon from "../../assets/github-icon.svg";
 import { useState } from "react";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage/LazyImage";
 
 const Contact = () => {
   const [result, setResult] = React.useState("");

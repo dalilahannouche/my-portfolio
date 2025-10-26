@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage/LazyImage";
+
 import footer_logo from "../../assets/logo.png"; // Assuming you have a logo image in the assets folder
 import user_icon from "../../assets/mail-icon.svg";
 

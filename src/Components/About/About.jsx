@@ -1,6 +1,6 @@
 import React from "react";
 import "./About.css";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage/LazyImage";
 
 import profile from "../../assets/dalila-about.gif";
 

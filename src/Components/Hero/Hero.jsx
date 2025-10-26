@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./Hero.css";
 import profileImage from "../../assets/me_ghibli.jpg";
-import LazyImage from "./LazyImage";
+import LazyImage from "../LazyImage/LazyImage";
 import hoverImage from "../../assets/me_real.jpg";
 //import marioSound from "../../assets/music/mario-sound.mp3"; // ton son
 import myCV from "../../assets/dalila-hannouche -CV.pdf"; // chemin vers le CV
