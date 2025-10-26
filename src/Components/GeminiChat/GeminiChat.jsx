@@ -104,12 +104,16 @@ export default function GeminiChatbot() {
         for (const line of lines) {
           if (line.startsWith("data:")) {
             const data = line.replace("data: ", "");
-            if (data === "[DONE]") break;
+            if (data === "[DONE]") {
+              reader.cancel();
+              break;
+            }
 
             try {
               const json = JSON.parse(data);
               if (json.text) {
                 partialMessage += json.text;
+
                 setMessages((prev) => {
                   const updated = [...prev];
                   updated[updated.length - 1] = {
@@ -118,6 +122,9 @@ export default function GeminiChatbot() {
                   };
                   return updated;
                 });
+
+                // 👇 Laisse React respirer entre deux chunks pour une vraie animation fluide
+                await new Promise((r) => setTimeout(r, 25));
               }
             } catch (err) {
               console.error("Erreur parsing JSON:", err);
@@ -173,7 +180,7 @@ export default function GeminiChatbot() {
                 <p>{msg.text}</p>
               </div>
             ))}
-            {loading && (
+            {loading && messages[messages.length - 1]?.role === "model" && (
               <div className="loader">
                 <div></div>
                 <div></div>
