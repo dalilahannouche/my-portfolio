@@ -11,7 +11,7 @@ function About() {
       <div className="about-sections">
         {/* Left Section */}
         <div className="about-left">
-          <LazyImage src={profile} className="about-me" alt="" />
+          <LazyLoadImage src={profile} className="about-me" alt="" />
         </div>
         {/* Right Section */}
         <div className="about-right">

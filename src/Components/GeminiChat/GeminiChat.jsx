@@ -168,7 +168,7 @@ export default function GeminiChatbot() {
   return (
     <>
       <div className="chat-button" onClick={() => setOpen(true)}>
-        <img src={chatboticon} alt="Start chat" />
+        <LazyLoadImage src={chatboticon} alt="Start chat" />
       </div>
 
       {open && (

@@ -49,19 +49,19 @@ const Contact = () => {
                 href="https://www.linkedin.com/in/dalilahannouche/"
                 target="_blank"
               >
-                <img src={linkedin_icon} alt="" />
+                <LazyLoadImage src={linkedin_icon} alt="" />
               </a>
               <p>Say hi on LinkedIn</p>
             </div>
             <div className="contact-detail">
               <a href="https://github.com/dalilahannouche" target="_blank">
-                <img src={github_icon} alt="" />
+                <LazyLoadImage src={github_icon} alt="" />
               </a>
               <p>Dev stuff lives here</p>
             </div>
             <div className="contact-detail">
               <a href="https://www.fiverr.com/lamasara" target="_blank">
-                <img src={fiverr_icon} alt="" />
+                <LazyLoadImage src={fiverr_icon} alt="" />
               </a>
 
               <p>Hire me !</p>

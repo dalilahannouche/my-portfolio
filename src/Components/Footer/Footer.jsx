@@ -8,7 +8,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-top">
         <div className="footer-top-left">
-          <img src={footer_logo} alt="" />
+          <LazyLoadImage src={footer_logo} alt="" />
           <p>
             Driven by curiosity and a love for clean code, I build, break, and
             rebuild until I get it right.

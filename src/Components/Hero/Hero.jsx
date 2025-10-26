@@ -29,12 +29,12 @@ function Hero() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <LazyImage
+        <LazyLoadImage
           src={profileImage}
           alt="Dalila Hannouche"
           className={`profile ${isHovered ? "fade-out" : "fade-in"}`}
         />
-        <LazyImage
+        <LazyLoadImage
           src={hoverImage}
           alt="Dalila Hannouche"
           className={`profile ${isHovered ? "fade-in" : "fade-out"}`}

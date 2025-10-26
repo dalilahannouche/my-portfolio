@@ -47,18 +47,20 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <LazyImage src={logo} alt="logo" />
-      <LazyImage
+      <LazyLoadImage src={logo} alt="logo" effect="blur" />
+      <LazyLoadImage
         src={menu_open}
         onClick={openMenu}
         alt=""
         className="nav-mob-open"
+        effect="blur"
       />
       <ul ref={menuRef} className="nav-menu">
-        <LazyImage
+        <LazyLoadImage
           src={menu_close}
           onClick={closeMenu}
           alt=""
+          effect="blur"
           className="nav-mob-close"
         />
         {["home", "about", "projects", "contact"].map((item) => (

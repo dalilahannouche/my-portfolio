@@ -17,18 +17,20 @@ const MyWork = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <LazyImage
+              <LazyLoadImage
                 className="myworkimage"
                 src={work.w_img}
                 alt={work.w_name}
+                effect="blur"
               />
             </a>
           ) : (
-            <LazyImage
+            <LazyLoadImage
               className="myworkimage"
               key={index}
               src={work.w_img}
               alt={work.w_name}
+              effect="blur"
             />
           )
         )}
