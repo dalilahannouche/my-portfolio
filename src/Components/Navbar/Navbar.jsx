@@ -47,10 +47,15 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <img src={logo} alt="logo" />
-      <img src={menu_open} onClick={openMenu} alt="" className="nav-mob-open" />
+      <LazyImage src={logo} alt="logo" />
+      <LazyImage
+        src={menu_open}
+        onClick={openMenu}
+        alt=""
+        className="nav-mob-open"
+      />
       <ul ref={menuRef} className="nav-menu">
-        <img
+        <LazyImage
           src={menu_close}
           onClick={closeMenu}
           alt=""

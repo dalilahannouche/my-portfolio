@@ -17,10 +17,14 @@ const MyWork = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img className="myworkimage" src={work.w_img} alt={work.w_name} />
+              <LazyImage
+                className="myworkimage"
+                src={work.w_img}
+                alt={work.w_name}
+              />
             </a>
           ) : (
-            <img
+            <LazyImage
               className="myworkimage"
               key={index}
               src={work.w_img}
