@@ -9,6 +9,7 @@ export default function GeminiChatbot() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const chatRef = useRef(null);
+  const botIndexRef = useRef(null); // Ref stable pour l'index du bot
 
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -25,19 +26,17 @@ export default function GeminiChatbot() {
       alert("La reconnaissance vocale n’est pas supportée par ce navigateur.");
       return;
     }
-
     recognition.start();
-
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       setInput((prev) => prev + " " + transcript);
     };
-
     recognition.onerror = (event) => {
       console.error("Erreur reconnaissance vocale :", event.error);
     };
   };
 
+  // Intro message
   useEffect(() => {
     const introMessage = {
       role: "model",
@@ -56,10 +55,12 @@ export default function GeminiChatbot() {
     }
   }, []);
 
+  // Sauvegarde messages
   useEffect(() => {
     localStorage.setItem("chatMessages", JSON.stringify(messages));
   }, [messages]);
 
+  // Scroll automatique
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -70,13 +71,15 @@ export default function GeminiChatbot() {
     const trimmed = input.trim();
     if (!trimmed) return;
 
-    // 1️⃣ Message utilisateur
+    // Message utilisateur
     setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
     setInput("");
 
-    // 2️⃣ Bulle vide pour le bot
-    const botIndex = messages.length; // <-- calcule ici
-    setMessages((prev) => [...prev, { role: "model", text: "" }]);
+    // Bulle vide pour le bot
+    setMessages((prev) => {
+      botIndexRef.current = prev.length; // index stable pour loader et updates
+      return [...prev, { role: "model", text: "" }];
+    });
     setLoading(true);
 
     try {
@@ -105,7 +108,6 @@ export default function GeminiChatbot() {
         for (const line of lines) {
           if (!line.startsWith("data:")) continue;
           const data = line.replace("data: ", "");
-
           if (data === "[DONE]") {
             setLoading(false);
             return;
@@ -115,7 +117,7 @@ export default function GeminiChatbot() {
             const parsed = JSON.parse(data);
             if (!parsed.text) continue;
 
-            // split par phrases
+            // Split par phrases pour effet phrase par phrase
             const phrases = parsed.text.match(/[^.?!]+[.?!]+/g) || [
               parsed.text,
             ];
@@ -123,14 +125,20 @@ export default function GeminiChatbot() {
             for (const phrase of phrases) {
               assistantText += phrase;
 
+              // Update la bulle du bot
               setMessages((prev) => {
                 const updated = [...prev];
-                updated[botIndex] = { role: "model", text: assistantText };
+                updated[botIndexRef.current] = {
+                  role: "model",
+                  text: assistantText,
+                };
                 return updated;
               });
 
+              // pause courte entre chunks
               await new Promise((r) => setTimeout(r, 80));
-              await new Promise((r) => setTimeout(r, 300)); // fin phrase
+              // pause plus longue si fin de phrase
+              await new Promise((r) => setTimeout(r, 300));
             }
           } catch (err) {
             console.warn("Chunk non JSON :", data);
@@ -182,14 +190,15 @@ export default function GeminiChatbot() {
                 }
               >
                 <p>{msg.text}</p>
-                {/* Loader uniquement si cette bulle est la dernière du bot et que loading=true */}
-                {loading && index === botIndex && msg.role === "model" && (
-                  <div className="loader">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </div>
-                )}
+                {loading &&
+                  index === botIndexRef.current &&
+                  msg.role === "model" && (
+                    <div className="loader">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  )}
               </div>
             ))}
           </div>
