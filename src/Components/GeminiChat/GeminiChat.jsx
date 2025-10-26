@@ -75,12 +75,8 @@ export default function GeminiChatbot() {
     setInput("");
 
     // 2️⃣ Bulle vide pour le bot
-    /*const botIndex = messages.length; // index de la bulle*/
-    let botIndex;
-    setMessages((prev) => {
-      botIndex = prev.length;
-      return [...prev, { role: "model", text: "" }];
-    });
+    const botIndex = messages.length; // <-- calcule ici
+    setMessages((prev) => [...prev, { role: "model", text: "" }]);
     setLoading(true);
 
     try {
@@ -119,9 +115,7 @@ export default function GeminiChatbot() {
             const parsed = JSON.parse(data);
             if (!parsed.text) continue;
 
-            assistantText += parsed.text;
-
-            // split par phrases (garder les ponctuations)
+            // split par phrases
             const phrases = parsed.text.match(/[^.?!]+[.?!]+/g) || [
               parsed.text,
             ];
@@ -135,11 +129,8 @@ export default function GeminiChatbot() {
                 return updated;
               });
 
-              // pause courte entre les petits morceaux
               await new Promise((r) => setTimeout(r, 80));
-
-              // pause plus longue à la fin de la phrase
-              await new Promise((r) => setTimeout(r, 300));
+              await new Promise((r) => setTimeout(r, 300)); // fin phrase
             }
           } catch (err) {
             console.warn("Chunk non JSON :", data);
