@@ -70,9 +70,17 @@ export default function GeminiChatbot() {
     const trimmed = input.trim();
     if (!trimmed) return;
 
-    // 1️⃣ Ajoute le message utilisateur
+    // 1️⃣ Message utilisateur
     setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
     setInput("");
+
+    // 2️⃣ Bulle vide pour le bot
+    /*const botIndex = messages.length; // index de la bulle*/
+    let botIndex;
+    setMessages((prev) => {
+      botIndex = prev.length;
+      return [...prev, { role: "model", text: "" }];
+    });
     setLoading(true);
 
     try {
@@ -89,10 +97,7 @@ export default function GeminiChatbot() {
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-
       let assistantText = "";
-      // 2️⃣ Ajoute une bulle vide pour le bot
-      setMessages((prev) => [...prev, { role: "model", text: "" }]);
 
       while (true) {
         const { done, value } = await reader.read();
@@ -116,19 +121,26 @@ export default function GeminiChatbot() {
 
             assistantText += parsed.text;
 
-            // Affiche le chunk dans la bulle
-            setMessages((prev) => {
-              const updated = [...prev];
-              updated[updated.length - 1] = {
-                role: "model",
-                text: assistantText,
-              };
-              return updated;
-            });
+            // split par phrases (garder les ponctuations)
+            const phrases = parsed.text.match(/[^.?!]+[.?!]+/g) || [
+              parsed.text,
+            ];
 
-            // ⚡ Montre le loader pendant la pause
-            setLoading(true);
-            await new Promise((r) => setTimeout(r, 100)); // 100ms pause pour que les dots apparaissent
+            for (const phrase of phrases) {
+              assistantText += phrase;
+
+              setMessages((prev) => {
+                const updated = [...prev];
+                updated[botIndex] = { role: "model", text: assistantText };
+                return updated;
+              });
+
+              // pause courte entre les petits morceaux
+              await new Promise((r) => setTimeout(r, 80));
+
+              // pause plus longue à la fin de la phrase
+              await new Promise((r) => setTimeout(r, 300));
+            }
           } catch (err) {
             console.warn("Chunk non JSON :", data);
           }
@@ -179,17 +191,16 @@ export default function GeminiChatbot() {
                 }
               >
                 <p>{msg.text}</p>
+                {/* Loader uniquement si cette bulle est la dernière du bot et que loading=true */}
+                {loading && index === botIndex && msg.role === "model" && (
+                  <div className="loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                )}
               </div>
             ))}
-
-            {/* 5️⃣ Loader animé pendant la génération */}
-            {loading && messages[messages.length - 1]?.role === "model" && (
-              <div className="loader">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            )}
           </div>
 
           <div className="input-area">
