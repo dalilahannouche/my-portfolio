@@ -6,18 +6,19 @@ const LazyImage = ({
   alt,
   width = "100%",
   height = "auto",
-  className,
+  className = "",
+  onClick,
 }) => {
   return (
-    <div className="image-container">
-      <LazyLoadImage
-        alt={alt}
-        src={src}
-        effect="blur" // Effet flou au chargement
-        width={width}
-        height={height}
-      />
-    </div>
+    <LazyLoadImage
+      alt={alt}
+      src={src}
+      effect="blur"
+      width={width}
+      height={height}
+      className={className} // le style cible directement l'image
+      onClick={onClick}
+    />
   );
 };
 
