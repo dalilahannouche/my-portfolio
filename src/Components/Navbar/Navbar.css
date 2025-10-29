@@ -34,13 +34,13 @@
     justify-self: unset;
     gap: 20px;
 }
-LazyImage[alt="logo"]{
+img[alt="logo"]{
     width: 200px;
     max-width: 100%;
     cursor: pointer;
 }
 
-LazyImage[alt="sound"]{
+img[alt="sound"]{
     width: 28px;
     max-width: 100%;
 }
@@ -254,7 +254,7 @@ body.dark h1, body.dark .support a {color: #fff;}
     gap: 15px;
   }
 
-  LazyImage[alt="logo"] {
+img[alt="logo"] {
     width: 150px;
   }
 
@@ -425,13 +425,13 @@ body.dark .Button:hover {
     justify-self: unset;
     gap: 20px;
 }
-LazyImage[alt="logo"]{
+img[alt="logo"]{
     width: 200px;
     max-width: 100%;
     cursor: pointer;
 }
 
-LazyImage[alt="sound"]{
+img[alt="sound"]{
     width: 28px;
     max-width: 100%;
 }
@@ -589,7 +589,7 @@ body.dark h1, body.dark .support a {color: #fff;}
   color: inherit; /* hérite la couleur du parent */
 }
 .nav-mob-open{
-        display:none;
+    display:none;
     }
 .nav-mob-close{
     display: none;
@@ -646,7 +646,7 @@ body.dark h1, body.dark .support a {color: #fff;}
     gap: 15px;
   }
 
- LazyImage[alt="logo"] {
+ img[alt="logo"] {
     width: 150px;
   }
 
